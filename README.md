@@ -1,27 +1,90 @@
-# FHIRWebApiAngularFrontEnd
+# FHIRWebApi.Angular.FrontEnd
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+**FHIRWebApi.Angular.FrontEnd** is an Angular-based frontend designed to interact with a FHIR-compatible backend API. It allows users to view and manage FHIR resources such as Patients and Observations in a clean and modern UI.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🧰 Features
 
-## Code scaffolding
+- 🔎 List FHIR Patients from a backend API
+- 📋 Display Observations for a selected Patient
+- 📤 Create new Observations via form interface
+- 🔧 Configurable API endpoint integration
+- 🧼 Form validation using Angular reactive forms
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🚀 Getting Started
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Prerequisites
 
-## Running unit tests
+- [Node.js](https://nodejs.org/)
+- Angular CLI (`npm install -g @angular/cli`)
+- Backend API (e.g., [FHIRWebApi.Api](https://github.com/rhaworth211/FHIRWebApi.Api))
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Setup
 
-## Running end-to-end tests
+```bash
+git clone https://github.com/rhaworth211/FHIRWebApi.Angular.FrontEnd.git
+cd FHIRWebApi.Angular.FrontEnd
+npm install
+ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Navigate to `http://localhost:4200` to access the application.
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 🌐 Environment Configuration
+
+Edit `src/environments/environment.ts` to point to your backend API:
+
+```ts
+export const environment = {
+  production: false,
+  apiUrl: 'https://localhost:7091/api'
+};
+```
+
+---
+
+## 📁 Project Structure
+
+```bash
+├── src/
+│   ├── app/
+│   │   ├── services/             # API service for HTTP requests
+│   │   ├── components/           # UI components like patient-list, observation-form
+│   │   ├── models/               # TypeScript interfaces for FHIR models
+│   │   └── app.module.ts         # Angular module setup
+│   ├── environments/
+│   │   └── environment.ts        # API base URL
+├── angular.json
+├── package.json
+```
+
+---
+
+## 🔌 Example Endpoints
+
+- `GET /api/patients` – fetch list of patients
+- `GET /api/observations?patientId=123` – fetch observations for a patient
+- `POST /api/observations` – create a new observation
+
+---
+
+## 🧪 Development Notes
+
+- Modular Angular structure for scalability
+- Uses `HttpClientModule` for API communication
+- Add error handling and loading states for production-readiness
+
+---
+
+## 📄 License
+
+MIT License — see `LICENSE` for full details.
+
+---
+
+> Built by [Ryan Haworth](mailto:r.haworth@outlook.com)
