@@ -1,0 +1,91 @@
+<mat-sidenav-container class="container">
+  <!-- Drawer for Observations -->
+  <mat-sidenav #drawer mode="side" position="end" opened="{{ selectedPatientId ? true : false }}">
+    <button mat-icon-button (click)="drawer.close(); selectedPatientId = null" aria-label="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-observation-list *ngIf="selectedPatientId" [patientId]="selectedPatientId"></app-observation-list>
+  </mat-sidenav>
+
+  <!-- Main content: Patient list -->
+  <mat-sidenav-content>
+    <h2>Last 50 Patients</h2>
+
+    <mat-card *ngIf="!isLoading; else loadingSpinner">
+      <table mat-table [dataSource]="patients" class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let patient"> {{ formatName(patient | unwrap) }} </td>
+        </ng-container>
+
+        <!-- Gender Column -->
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef> Gender </th>
+          <td mat-cell *matCellDef="let patient"> {{ (patient.gender | unwrap) || '—' }} </td>
+        </ng-container>
+
+        <!-- Birth Date Column -->
+        <ng-container matColumnDef="birthDate">
+          <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+          <td mat-cell *matCellDef="let patient"> {{ (patient.birthDate | unwrap) || '—' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+          <td mat-cell *matCellDef="let patient"> <button mat-icon-button (click)="openDrawer(getPatientId(patient.id), drawer)">
+              <mat-icon>visibility</mat-icon>
+            </button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>      
+    </mat-card>
+
+    <button mat-raised-button color="primary" (click)="openCreateDialog()">Add Patient</button>
+
+    <ng-template #loadingSpinner>
+        <div style="display: flex; justify-content: center; align-items: center; height: 200px;">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<!-- <h2>Last 50 Patients</h2>
+    <table *ngIf="patients.length > 0; else loading">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Birth Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patients; trackBy: trackById">
+          <td>{{ patient.id | unwrap }}</td>
+          <td>{{ formatName(patient | unwrap) }}</td>
+          <td>{{ (patient.gender | unwrap) ? (patient.gender | unwrap) : '—' }}</td>
+          <td>{{ (patient.birthDate | unwrap) ? (patient.birthDate | unwrap) : '—' }}</td>
+          <td>
+            <button mat-icon-button (click)="openDrawer(patient.id, drawer)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #loadingSpinner>
+      <div style="display: flex; justify-content: center; align-items: center; height: 200px;">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
