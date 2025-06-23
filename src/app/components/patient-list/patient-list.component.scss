@@ -1,24 +1,15 @@
 @import "@swimlane/ngx-datatable/themes/bootstrap";
 .container {
   height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 mat-sidenav {
   width: 400px;
   padding: 1rem;
 }
-// table {
-//   width: 100%;
-//   border-collapse: collapse;
-//   margin-top: 1rem;
-// }
 
-// th, td {
-//   border: 1px solid #ccc;
-//   padding: 0.5rem;
-//   text-align: left;
-// }
-
-// th {
-//   background-color: #f2f2f2;
-// }
+.full-width-table {
+  width: 100%;
+}
