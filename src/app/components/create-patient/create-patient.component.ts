@@ -26,7 +26,11 @@ export class CreatePatientComponent {
       birthDate: [''],
     });
   }
-
+  
+  /**
+   * Handles form submission to create a new patient.
+   * Constructs a patient DTO from the form values and calls PatientService.createPatient.
+   */
   onSubmit() {
     const formValue = this.form.value;
 

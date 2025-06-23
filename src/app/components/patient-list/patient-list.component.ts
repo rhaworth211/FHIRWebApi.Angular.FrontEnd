@@ -34,7 +34,11 @@ export class PatientListComponent {
   ngOnInit() {
     this.loadPatients();
   }
-  
+
+  /**
+   * Loads the last 50 patients from the PatientService.
+   * Sets isLoading to true while fetching data and false when done.
+   */
   loadPatients() {
     this.isLoading = true;
     this.patientService.getLast50Patients().subscribe(data => {
@@ -46,6 +50,10 @@ export class PatientListComponent {
     });
   }
   
+  /**
+   * Opens a dialog to create a new patient.
+   * After the dialog is closed, it refreshes the patient list if a new patient was added.
+   */
   openCreateDialog() {
     const dialogRef = this.dialog.open(CreatePatientComponent);
 
@@ -55,10 +63,19 @@ export class PatientListComponent {
       }
     });
   }
+
+  /**
+   * Returns the patient ID as a string.
+   * Uses UnwrapPipe to transform the patient ID if necessary.
+   * @param patientid - The patient ID to unwrap.
+   */
   getPatientId(patientid: any): string {
     return new UnwrapPipe().transform(patientid);
   }
 
+  /**  
+   * Opens a side navigation drawer to display patient details.
+   */
   openDrawer(patientId: string, drawer: MatSidenav) {
     this.selectedPatientId = null;
     setTimeout(() => {
@@ -67,10 +84,22 @@ export class PatientListComponent {
     });
   }
 
+  /**
+   * Angular `trackBy` function for optimizing rendering of patient list in ngFor.
+   * @param index The index of the current item
+   * @param patient The patient item
+   * @returns The unique identifier (patient.id)
+   */
   trackById(index: number, patient: any): string {
     return patient.id;
   }
 
+  /**
+   * Formats a FHIR `Patient` resource name object into a human-readable full name.
+   * Handles optional and wrapped FHIR name structures.
+   * @param patient The patient resource containing a `name` field
+   * @returns A full name string composed of given names and family name
+   */
   formatName(patient: any): string {
     const name = patient.name?.[0];
 

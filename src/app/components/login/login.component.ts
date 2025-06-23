@@ -15,7 +15,11 @@ export class LoginComponent {
   password = '';
 
   constructor(private auth: AuthService, private router: Router) {}
-
+  
+  /**
+   * Handles user login by calling AuthService.login.
+   * On successful login, navigates to the patient list page.
+   */
   onLogin() {
     this.auth.login(this.username, this.password).subscribe({
       next: () => this.router.navigate(['/patient-list']),
