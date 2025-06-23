@@ -54,38 +54,3 @@
       </ng-template>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-
-<!-- <h2>Last 50 Patients</h2>
-    <table *ngIf="patients.length > 0; else loading">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Birth Date</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let patient of patients; trackBy: trackById">
-          <td>{{ patient.id | unwrap }}</td>
-          <td>{{ formatName(patient | unwrap) }}</td>
-          <td>{{ (patient.gender | unwrap) ? (patient.gender | unwrap) : '—' }}</td>
-          <td>{{ (patient.birthDate | unwrap) ? (patient.birthDate | unwrap) : '—' }}</td>
-          <td>
-            <button mat-icon-button (click)="openDrawer(patient.id, drawer)">
-              <mat-icon>visibility</mat-icon>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <ng-template #loadingSpinner>
-      <div style="display: flex; justify-content: center; align-items: center; height: 200px;">
-        <mat-spinner></mat-spinner>
-      </div>
-    </ng-template>
-  </mat-sidenav-content>
-</mat-sidenav-container> -->
