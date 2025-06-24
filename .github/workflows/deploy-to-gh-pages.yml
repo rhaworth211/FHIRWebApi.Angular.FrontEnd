@@ -19,16 +19,16 @@ jobs:
         node-version: 18
 
     - name: Install dependencies
+      working-directory: FHIRWebApi.Angular.FrontEnd
       run: npm ci
-      working-directory: ./FHIRWebApi.Angular.FrontEnd
 
     - name: Build Angular app (prod)
+      working-directory: FHIRWebApi.Angular.FrontEnd
       run: |
         npm run build -- --configuration production --base-href "/${{ github.event.repository.name }}/"
-        mkdir -p ../../docs
-        cp -r dist/FHIRWebApi.Angular.FrontEnd/* ../../docs/
-        touch ../../docs/.nojekyll
-      working-directory: ./FHIRWebApi.Angular.FrontEnd
+        mkdir -p ../docs
+        cp -r dist/* ../docs/
+        touch ../docs/.nojekyll
 
     - name: Commit built site to /docs
       run: |
