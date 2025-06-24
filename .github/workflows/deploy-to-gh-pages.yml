@@ -20,7 +20,7 @@ jobs:
 
     - name: Debug list files
       run: |
-        cd FHIRWebApi.Angular.FrontEnd
+        pwd
         ls -la
 
     - name: Install dependencies
