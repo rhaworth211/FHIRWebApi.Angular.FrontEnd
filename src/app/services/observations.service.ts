@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Observation } from 'fhir/r4';  
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import { Observation } from 'fhir/r4';
  * Supports retrieving observations by patient and creating new observations.
  */
 export class ObservationsService {
-  private apiUrl = 'https://localhost:7091/api/observations';
+  private apiUrl = `${environment.apiUrl}/observations`;
 
   constructor(private http: HttpClient) {}
 

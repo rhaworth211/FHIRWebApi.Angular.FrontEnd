@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 
@@ -25,7 +26,7 @@ export class AuthService {
    * @returns An observable that emits the login response and performs side effects (e.g., token storage).
    */
   login(username: string, password: string) {
-    return this.http.post<{ token: string }>('https://localhost:7091/api/auth/login', {
+    return this.http.post<{ token: string }>(`${environment.apiUrl}/auth/login`, {
       username,
       password
     }).pipe(
