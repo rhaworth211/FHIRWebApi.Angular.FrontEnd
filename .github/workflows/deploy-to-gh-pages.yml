@@ -19,11 +19,11 @@ jobs:
         node-version: 18
 
     - name: Install dependencies
-      working-directory: ./FHIRWebApi.Angular.FrontEnd
+      
       run: npm install
 
     - name: Build Angular app (prod)
-      working-directory: ./FHIRWebApi.Angular.FrontEnd
+      
       run: |
         npm run build -- --configuration production --base-href "/${{ github.event.repository.name }}/"
 
