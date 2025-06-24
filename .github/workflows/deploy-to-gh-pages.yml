@@ -17,16 +17,17 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18
+
     - name: Debug: list files
       run: ls -la
       working-directory: ./FHIRWebApi.Angular.FrontEnd
-      
+
     - name: Install dependencies
-      
+      working-directory: ./FHIRWebApi.Angular.FrontEnd
       run: npm install
 
     - name: Build Angular app (prod)
-      
+      working-directory: ./FHIRWebApi.Angular.FrontEnd
       run: |
         npm run build -- --configuration production --base-href "/${{ github.event.repository.name }}/"
 
