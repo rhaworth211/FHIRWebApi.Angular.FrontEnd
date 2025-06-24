@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: 18
 
-    - name: Debug: list files
+    - name: Debug list files
       run: |
         cd FHIRWebApi.Angular.FrontEnd
         ls -la
