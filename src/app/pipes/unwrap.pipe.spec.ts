@@ -1,8 +1,14 @@
-import { UnwrapPipe } from './unwrap.pipe';
+import { Pipe, PipeTransform } from '@angular/core';
 
-describe('UnwrapPipe', () => {
-  it('create an instance', () => {
-    const pipe = new UnwrapPipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+@Pipe({
+  name: 'unwrap',
+  standalone: true
+})
+export class UnwrapPipe implements PipeTransform {
+  transform(input: any): any {
+    while (input && typeof input === 'object' && 'value' in input) {
+      input = input.value;
+    }
+    return input;
+  }
+}

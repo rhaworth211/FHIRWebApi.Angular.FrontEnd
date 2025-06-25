@@ -41,7 +41,7 @@ export class PatientListComponent {
    */
   loadPatients() {
     this.isLoading = true;
-    this.patientService.getLast50Patients().subscribe(data => {
+    this.patientService.getPatients(20).subscribe(data => {
       this.patients = data;
       this.isLoading = false;
     }, error => {
@@ -117,7 +117,7 @@ export class PatientListComponent {
   constructor(private patientService: PatientService,
               private dialog: MatDialog
   ) {
-    this.patientService.getLast50Patients().subscribe(data => {
+    this.patientService.getPatients(20).subscribe(data => {
       this.patients = data;
     });
   }
